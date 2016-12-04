@@ -1,14 +1,14 @@
 @charset "utf-8";
 /* CSS Document */
-body,ul,ol,h1,h2,h3,h4,h5,h6,p,dl,dd,input,textarea{ margin:0; padding:0;}
+*{ margin:0; padding:0;}
 li{ list-style:none;}
+a{ text-decoration:none; color:#666;}
 img{ vertical-align:top; border:none;}
-a{ text-decoration:none; color:#fff;}
-input,textarea{ border:none; outline:none; background:none;}
-textarea{ resize:none;}
-body{ font-size:12px;}
+
 .fl{ float:left;}
 .fr{ float:right;}
 .clearfix:after{ content:''; display:block; clear:both;}
-
-
+.clearfix{zoom:1;}
+body{ font-size:12px; background:#f2f2f2;}
+input{border:none; padding:0; outline:none; background:none;}
+textarea{border:none; padding:0; outline:none; background:none; resize:none;}

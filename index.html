@@ -1,134 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="format-detection" content="telephone=no,email=no">
-	<title>大数医达</title>
-	<script src="js/zepto.min.js"></script>
-	<script src="js/swiper.min.js"></script>	
-	<script src="js/index.js"></script>
-	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=M1TLtBBYdlr2bZBr1sGDorgEDssOQtTE"></script>
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/swiper.min.css">
-	<link rel="stylesheet" href="css/index.css">
-	<style>
-		
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/box1.css">
+    <style>
+        body,html{width:100%; height:100%;overflow:hidden;}
+
+
+    </style>
+    <script src="js/move.js"></script>
+    <script src="js/domReady.js"></script>
+    <script>
+        function random(n,m){
+            return parseInt(Math.random()*(m-n)+n);
+        }
+    domReady(function(){
+        //背景图的布置；
+        var oBox1=document.getElementById('box1');
+        var oCh=document.documentElement.clientHeight;
+        var oCw=document.documentElement.clientWidth;
+        oBox1.style.height=oCh+'px';
+        oBox1.style.width=oCw+'px';
+        var oAnimate1=document.getElementById('animate1');
+        oAnimate1.onclick=function(){
+            oBox1.style.webkitTransition='3s all ease';
+            oBox1.style.mozTransition='3s all ease';
+            oBox1.style.msTransition='3s all ease';
+            oBox1.style.oTransition='3s all ease';
+            oBox1.style.transition='3s all ease';
+            oBox1.style.height=0;
+        };
+        var oEarth=document.querySelector('.earth');
+        var oFir=document.querySelector('.fireworm');
+        var oBox1W=oBox1.offsetWidth;
+        var oBox1H=oBox1.offsetHeight;
+        var n=9;
+        var n1=0;
+        oEarth.onclick=function(){
+            for (var i = 0; i < n; i++) {
+                var oImg = new Image();
+                oImg.src = 'stars/star' + random(1, 16) + '.png';
+
+                if(oFir.children.length>=50){
+                    oFir.children.length=50;
+                }else{
+                    oFir.appendChild(oImg);
+                }
+            }
+            var aImg = oFir.children;
+            for(var N=n1; N<aImg.length; N++){
+                aImg[N].style.position = 'absolute';
+                aImg[N].style.webkitTransition = '5s all ease';
+                aImg[N].style.mozTransition = '5s all ease';
+                aImg[N].style.msTransition = '5s all ease';
+                aImg[N].style.oTransition = '5s all ease';
+                aImg[N].style.transition = '5s all ease';
+                aImg[N].style.webkitBoxShadow = '0px 0px 10px #fff';
+                aImg[N].style.mozBoxShadow = '0px 0px 10px #fff';
+                aImg[N].style.msBoxShadow = '0px 0px 10px #fff';
+                aImg[N].style.oBoxShadow = '0px 0px 10px #fff';
+                aImg[N].style.BoxShadow = '0px 0px 10px #fff';
+                aImg[N].style.borderRadius = '50%';
+                move(aImg[N], {"left": random(-oBox1W/2, oBox1W/2), "top": random((-oBox1H + 150), 10)});
+            }
+            n1+=6;
+        };
+        //时钟；
+        var oClock=document.querySelector('.clock');
+        var oH=oClock.children[0];
+        var oM=oClock.children[1];
+        var oS=oClock.children[2];
+        function clock(){
+            var oDate=new Date();
+            var h=oDate.getHours();
+            var m=oDate.getMinutes();
+            var s=oDate.getSeconds();
+            oH.style.webkitTransform='rotate('+(h%12*30+m/2)+'deg)';
+            oH.style.mozTransform='rotate('+(h%12*30+m/2)+'deg)';
+            oH.style.msTransform='rotate('+(h%12*30+m/2)+'deg)';
+            oH.style.oTransform='rotate('+(h%12*30+m/2)+'deg)';
+            oH.style.transform='rotate('+(h%12*30+m/2)+'deg)';
+
+            oH.style.webkitTransformOrigin='center bottom';
+            oH.style.mozTransformOrigin='center bottom';
+            oH.style.msTransformOrigin='center bottom';
+            oH.style.oTransformOrigin='center bottom';
+            oH.style.transformOrigin='center bottom';
+
+            oM.style.webkitTransform='rotate('+m*6+'deg)';
+            oM.style.mozTransform='rotate('+m*6+'deg)';
+            oM.style.msTransform='rotate('+m*6+'deg)';
+            oM.style.oTransform='rotate('+m*6+'deg)';
+            oM.style.transform='rotate('+m*6+'deg)';
+
+            oM.style.webkitTransformOrigin='center bottom';
+            oM.style.mozTransformOrigin='center bottom';
+            oM.style.msTransformOrigin='center bottom';
+            oM.style.oTransformOrigin='center bottom';
+            oM.style.transformOrigin='center bottom';
+
+            oS.style.webkitTransform='rotate('+s*6+'deg)';
+            oS.style.mozTransform='rotate('+s*6+'deg)';
+            oS.style.msTransform='rotate('+s*6+'deg)';
+            oS.style.oTransform='rotate('+s*6+'deg)';
+            oS.style.transform='rotate('+s*6+'deg)';
+
+            oS.style.webkitTransformOrigin='center bottom';
+            oS.style.mozTransformOrigin='center bottom';
+            oS.style.msTransformOrigin='center bottom';
+            oS.style.oTransformOrigin='center bottom';
+            oS.style.transformOrigin='center bottom';
+        }
+        clock();
+        setInterval(clock,1000);
+    });
+    </script>
 </head>
 <body>
-	<header class="clearfix" id="a1">
-		<menu id="btn"></menu>
-		<h1>大数医达</h1>
-	</header>
-	<ul id="menu">
-		<li><a href="#a1">首页</a></li>
-		<li><a href="index2.html">产品简介</a></li>
-		<li><a href="#map">联系我们</a></li>
-		<li class="close">×</li>
-	</ul>
-	<div class="banner">
-		<img src="banner.jpg" alt="">
-		<div class="banner_txt">
-			<span class="up">人工智能的一小步，</span>
-			<div class="down clearfix">
-				<div class="fl banner_red">医疗健康</div>
-				<div class="fl">一大步</div>
-			</div>
-		</div>
-	</div>
-	<div class="about">
-		<div class="clearfix" id="a2">
-			<span class="number fl">01</span>
-			<h2 class="fl">关于我们</h2>
-		</div>
-		<span class="about_red"></span>
-		<p>北京大数医达有限公司是一家在人工智能、大数据、云计算方面拥有国际领先水平的高科技企业，，专注于多源异构医疗数据处理、深度挖掘与机器学习。</p>
-	</div>
-	<div class="tab">
-		<div class="swiper-container">
-	        <div class="swiper-wrapper">
-	            <div class="swiper-slide">
-	            	<img src="img/elite.svg" alt="">
-					<p>顶尖团队</p>
-					<span>Elite</span>
-					<span>team</span>
-	            </div>
-	            <div class="swiper-slide">
-	            	<img src="img/elite.svg" alt="">
-					<p>顶尖团队</p>
-					<span>Elite</span>
-					<span>team</span>
-	            </div>
-	            <div class="swiper-slide">
-	            	<img src="img/leading.svg" alt="">
-					<p>国际领先</p>
-					<span>Leading</span>
-					<span>international</span>
-	            </div>
-	            <div class="swiper-slide">
-	            	<img src="img/elite.svg" alt="">
-					<p>顶尖团队</p>
-					<span>Elite</span>
-					<span>team</span>
-	            </div>
-	            <div class="swiper-slide">
-	            	<img src="img/elite.svg" alt="">
-					<p>顶尖团队</p>
-					<span>Elite</span>
-					<span>team</span>
-	            </div>
-	            <div class="swiper-slide">
-	            	<img src="img/elite.svg" alt="">
-					<p>顶尖团队</p>
-					<span>Elite</span>
-					<span>team</span>
-	            </div>
-	            <div class="swiper-slide">
-	            	<img src="img/elite.svg" alt="">
-					<p>顶尖团队</p>
-					<span>Elite</span>
-					<span>team</span>
-	            </div>
-	        </div>
-			<div class="swiper-scrollbar"></div>
-		</div>
-	</div>
-	<div class="about">
-		<div class="clearfix">
-			<span class="number fl">02</span>
-			<h2 class="fl">团队领袖——邓侃CTO</h2>
-		</div>
-		<span class="about_red2"></span>
-		<p>北京大数医达有限公司是一家在人工智能、大数据、云计算方面拥有国际领先水平的高科技企业，，专注于多源异构医疗数据处理、深度挖掘与机器学习。</p>
-	</div>
-	<div class="about hope"> 
-		<div class="clearfix">
-			<span class="number fl">03</span>
-			<h2 class="fl">我们的愿景</h2>
-		</div>
-		<span class="about_red"></span>
-		<p>北京大数医达有限公司是一家在人工智能、大数据、云计算方面拥有国际领先水平的高科技企业，，专注于多源异构医疗数据处理、深度挖掘与机器学习。</p>
-		<video src="hd.mp4" controls></video>
-	</div>
-	<div class="about contact">
-		<div class="clearfix" id="a3">
-			<span class="number fl">04</span>
-			<h2 class="fl">联系我们</h2>
-		</div>
-		<span class="about_red"></span>
-		<p>地址：北京市海淀区东北旺西路8号中关村软件园一期3号楼3B区1206室</p>
-		<p>公司邮箱：service@iyoudoctor.com</p>
-		<p>公司网址：www.iyoudoctor.com</p>
-	</div>
-	<div class="map" id="map">
+    <div id="box1">
+        <div class="month"></div>
+        <div class="fireworm"></div>
+        <div class="footer1">
+            <i id="animate1" class="animated bounceInLeft">Welcome To My Personal Stand</i>
+            <div id="animate2">
+                <img class="earth" src="img/earth1.png" alt="">
+            </div>
+        </div>
+        <div class="clock">
+            <div class="h"></div>
+            <div class="m"></div>
+            <div class="s"></div>
+            <img class="c" src="img/clock.png"/>
+        </div>
+    </div>
+    <div id="box2">
 
-	</div>
-	<footer>
-		<span>京ICP备16013105号-1</span>
-	</footer>
-
+    </div>
 </body>
 </html>
